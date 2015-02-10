@@ -161,6 +161,11 @@ public class Agent {
 
 		return ret;
 	}
+	
+	private double predictRandomAttendance() {
+
+		return (Math.random() * 100);
+	}
 
 	// ========================================================================
 	// === Public Interface ===================================================
