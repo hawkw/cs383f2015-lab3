@@ -1,10 +1,10 @@
 Jobs
 ----
 
-- [ ] Stupid Strategy (???)
+- [ ] Stupid Strategy 1 (???)
     + Luke
-- [ ] Stupid Strategy (???)
-    + Hawk
+- [ ] Stupid Strategy 2 (???)
+    + Luke
 - [ ] Smart Strategy (???)
     + Will
     + a little Hawk maybe
