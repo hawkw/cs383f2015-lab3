@@ -30,13 +30,13 @@ import elfarol.strategies.RandomStrategy;
  *          $
  * @see AStrategy
  */
-public class AgentRan implements Agent {
+public class AgentWeighted implements Agent {
 
 	// ========================================================================
 	// === Members ============================================================
 
 	/** The list of strategy objects this agent may use for prediction. */
-	private final List<AStrategy> strategies = new ArrayList<AStrategy>();
+	protected final List<AStrategy> strategies = new ArrayList<AStrategy>();
 
 	/**
 	 * The best strategy used so far.
@@ -45,18 +45,18 @@ public class AgentRan implements Agent {
 	 * Initially it is set to the first one.
 	 * </p>
 	 */
-	private AStrategy bestStrategy = null;
+	protected AStrategy bestStrategy = null;
 
 	/**
 	 * A boolean flag that shows if the agent is attending the bar in the
 	 * current time step.
 	 */
-	private boolean attend = false;
+	protected boolean attend = false;
 
 	/**
 	 * Initializes a new agent instance with the
 	 */
-	public AgentRan() {
+	public AgentWeighted() {
 		for (int i = 0, n = getStrategiesNumber(); i < n; ++i) {
 			strategies.add(new RandomStrategy());
 		}
@@ -66,13 +66,10 @@ public class AgentRan implements Agent {
 		updateBestStrategy();
 	}
 
-	/**
-	 * Returns the value of <code>attend</code>.
-	 * 
-	 * @return <code>true</code> if the agent attends the bar in the current
-	 *         time step (<i>if</i> called after the {@link #updateAttendance()}
-	 *         function); <code>false</code> otherwise
+	/* (non-Javadoc)
+	 * @see elfarol.Agent#isAttending()
 	 */
+	@Override
 	public boolean isAttending() {
 		return attend;
 	}
@@ -98,7 +95,7 @@ public class AgentRan implements Agent {
 	 * @return the difference between the predicted and actual attendance level
 	 *         of the last <code>memorySize</code> weeks; non-negative
 	 */
-	private double score(final AStrategy strategy) {
+	protected double score(final AStrategy strategy) {
 		if (null == strategy) {
 			throw new IllegalArgumentException("strategy == null");
 		}
@@ -108,7 +105,8 @@ public class AgentRan implements Agent {
 			final int week = i + 1;
 			final double currentAttendance = History.getInstance()
 					.getAttendance(i);
-			final double prediction = predictRandomAttendance();
+			final double prediction = predictAttendance(strategy, History
+					.getInstance().getSubHistory(week));
 
 			ret += Math.abs(currentAttendance - prediction);
 		}
@@ -146,20 +144,33 @@ public class AgentRan implements Agent {
 	 * @return the prediction based on the previous attendance levels based on
 	 *         the described formulae
 	 */
+	protected double predictAttendance(final AStrategy strategy,
+			final List<Integer> subhistory) {
+		assert (strategy.size() - 1 == subhistory.size());
 
+		// Last one is considered with a weight of 1.0
+		double ret = strategy.getWeight(0);
+
+		// Start from the second one (where index is 1)
+		for (int i = 1; i < strategy.size(); ++i) {
+			ret += strategy.getWeight(i) * subhistory.get(i - 1);
+		}
+
+		return ret;
+	}
 	
 	private double predictRandomAttendance() {
+
 		return (Math.random() * 100);
 	}
 
 	// ========================================================================
 	// === Public Interface ===================================================
 
-	/**
-	 * Makes the agent evaluate all the strategies and if any of them is better
-	 * than the previously used one it is updated. A threshold level of
-	 * <code>memorySize * agentsNumber + 1</code> is also considered.
+	/* (non-Javadoc)
+	 * @see elfarol.Agent#updateBestStrategy()
 	 */
+	@Override
 	public void updateBestStrategy() {
 		// Defined threshold level
 		double minScore = getMemorySize() * getAgentsNumber() + 1;
@@ -179,7 +190,8 @@ public class AgentRan implements Agent {
 	 * prediction by its best evaluated strategy.
 	 */
 	public void updateAttendance() {
-		final double prediction = predictRandomAttendance();
+		final double prediction = predictAttendance(bestStrategy, History
+				.getInstance().getMemoryBoundedSubHistory());
 
 		attend = (prediction <= getOvercrowdingThreshold());
 	}
