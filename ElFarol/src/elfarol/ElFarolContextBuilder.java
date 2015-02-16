@@ -22,7 +22,7 @@ import repast.simphony.engine.schedule.ScheduledMethod;
  *          richard.legendi@gmail.com $
  */
 public class ElFarolContextBuilder extends DefaultContext<Object> implements
-		ContextBuilder<AgentRan> {
+		ContextBuilder<Agent> {
 
 	// ========================================================================
 	// === Super Interface ====================================================
@@ -35,12 +35,12 @@ public class ElFarolContextBuilder extends DefaultContext<Object> implements
 	 * .Context)
 	 */
 	@Override
-	public Context<AgentRan> build(final Context<AgentRan> context) {
+	public Context<Agent> build(final Context<Agent> context) {
 		ParameterWrapper.reinit();
 		History.getInstance().init();
 
 		for (int i = 0; i < getAgentsNumber(); ++i) {
-			final AgentRan agent = new AgentRan();
+			final Agent agent = new AgentRan();
 			context.add(agent);
 		}
 

@@ -30,7 +30,7 @@ import elfarol.strategies.RandomStrategy;
  *          $
  * @see AStrategy
  */
-public class AgentRan {
+public class AgentRan extends Agent {
 
 	// ========================================================================
 	// === Members ============================================================
