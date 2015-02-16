@@ -43,7 +43,28 @@ public class Utils {
 
 		return Collections.unmodifiableList(ret);
 	}
+	
+	
+	
+	
+	
+	public static List<AgentRan> getAgentRanList() {
+		@SuppressWarnings("unchecked")
+		final Iterable<AgentRan> agents = RunState.getInstance()
+				.getMasterContext().getObjects(AgentRan.class);
 
+		final ArrayList<AgentRan> ret = new ArrayList<AgentRan>();
+
+		for (final AgentRan agent : agents) {
+			ret.add(agent);
+		}
+
+		return Collections.unmodifiableList(ret);
+	}
+
+	
+	
+	
 	/**
 	 * Returns the current attendance level of the bar.
 	 * 
@@ -61,5 +82,24 @@ public class Utils {
 
 		return ret;
 	}
+	
+	
+	
+	
+	
+	
+	
+	public static int getAttendanceRan() {
+		int ret = 0;
+
+		for (final AgentRan act : getAgentRanList()) {
+			if (act.isAttending()) {
+				ret++;
+			}
+		}
+
+		return ret;
+	}
+	
 
 }

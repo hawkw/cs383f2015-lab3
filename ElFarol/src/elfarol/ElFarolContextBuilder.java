@@ -22,7 +22,7 @@ import repast.simphony.engine.schedule.ScheduledMethod;
  *          richard.legendi@gmail.com $
  */
 public class ElFarolContextBuilder extends DefaultContext<Object> implements
-		ContextBuilder<Agent> {
+		ContextBuilder<AgentRan> {
 
 	// ========================================================================
 	// === Super Interface ====================================================
@@ -35,12 +35,12 @@ public class ElFarolContextBuilder extends DefaultContext<Object> implements
 	 * .Context)
 	 */
 	@Override
-	public Context<Agent> build(final Context<Agent> context) {
+	public Context<AgentRan> build(final Context<AgentRan> context) {
 		ParameterWrapper.reinit();
 		History.getInstance().init();
 
 		for (int i = 0; i < getAgentsNumber(); ++i) {
-			final Agent agent = new Agent();
+			final AgentRan agent = new AgentRan();
 			context.add(agent);
 		}
 
@@ -63,13 +63,13 @@ public class ElFarolContextBuilder extends DefaultContext<Object> implements
 	 */
 	@ScheduledMethod(start = 1, interval = 1)
 	public void schedule() {
-		for (final Agent act : Utils.getAgentList()) {
+		for (final AgentRan act : Utils.getAgentRanList()) {
 			act.updateAttendance();
 		}
 
-		History.getInstance().updateHistory();
+		History.getInstance().updateHistoryRan();
 
-		for (final Agent act : Utils.getAgentList()) {
+		for (final AgentRan act : Utils.getAgentRanList()) {
 			act.updateBestStrategy();
 		}
 	}
@@ -84,7 +84,7 @@ public class ElFarolContextBuilder extends DefaultContext<Object> implements
 	 * @return the current attendance level of the bar
 	 */
 	public int attendance() {
-		return Utils.getAttendance();
+		return Utils.getAttendanceRan();
 	}
 
 }
