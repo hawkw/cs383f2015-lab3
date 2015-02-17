@@ -51,12 +51,14 @@ public class ElFarolContextBuilder extends DefaultContext<Object> implements
 			final Agent agent = new AgentAverage();
 			context.add(agent);
 		}
-		/*
-		 * // TODO: comment this back in when the smart agent is implemented for
-		 * (int i = 0; i < agentAmount( ParameterWrapper.getPercentAvg(),
-		 * ParameterWrapper.getAgentsNumber() ); i++) { final Agent agent = new
-		 * AgentSmart(); context.add(agent); }
-		 */
+		
+		// TODO: comment this back in when the smart agent is implemented 
+		for (int i = 0; i < agentAmount( ParameterWrapper.getPercentAvg(),
+				ParameterWrapper.getAgentsNumber() ); i++) {
+			final Agent agent = new AgentSmart(); 
+			context.add(agent);
+		}
+
 		for (int i = 0; i < agentAmount(100 - (getPercentAvg()
 				+ getPercentRand() + getPercentSmart()), getAgentsNumber()); i++) {
 			final Agent agent = new AgentWeighted();
