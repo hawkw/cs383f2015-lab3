@@ -26,6 +26,10 @@ import repast.simphony.parameter.Parameters;
 public class ElFarolContextBuilder extends DefaultContext<Object> implements
 		ContextBuilder<Agent> {
 
+	private static int agentAmount(int percent, int total) {
+		return (int) ((percent / 100d) * total);
+	}
+
 	// ========================================================================
 	// === Super Interface ====================================================
 
@@ -40,14 +44,32 @@ public class ElFarolContextBuilder extends DefaultContext<Object> implements
 	public Context<Agent> build(final Context<Agent> context) {
 		ParameterWrapper.reinit();
 		History.getInstance().init();
-		final Parameters parameters = RunEnvironment.getInstance()
-				.getParameters();
 
-		for (int i = 0; i < getAgentsNumber(); ++i) {
+		for (int i = 0; i < agentAmount(ParameterWrapper.getPercentRand(),
+				ParameterWrapper.getAgentsNumber()); i++) {
 			final Agent agent = new AgentRan();
 			context.add(agent);
 		}
-
+		for (int i = 0; i < agentAmount(ParameterWrapper.getPercentAvg(),
+				ParameterWrapper.getAgentsNumber()); i++) {
+			final Agent agent = new AgentAverage();
+			context.add(agent);
+		}
+		/*
+		 * // TODO: comment this back in when the smart agent is implemented
+		for (int i = 0; i < agentAmount( ParameterWrapper.getPercentAvg(),
+				ParameterWrapper.getAgentsNumber() ); i++) { 
+			final Agent agent = new AgentSmart(); context.add(agent); 
+		}
+		 */
+		for (int i = 0; i < agentAmount(
+				100 - (ParameterWrapper.getPercentAvg()
+						+ ParameterWrapper.getPercentRand() + ParameterWrapper
+						.getPercentSmart()),
+				ParameterWrapper.getAgentsNumber()); i++) {
+			final Agent agent = new AgentAverage();
+			context.add(agent);
+		}
 		return context;
 	}
 

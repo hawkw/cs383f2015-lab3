@@ -61,6 +61,15 @@ public final class ParameterWrapper {
 	public static int getAgentsNumber() {
 		return agentsNumber;
 	}
+	public static int getPercentRand() {
+		return percentRand;
+	}
+	public static int getPercentAvg() {
+		return percentAvg;
+	}
+	public static int getPercentSmart() {
+		return percentSmart;
+	}
 
 	/**
 	 * Returns the memory size of the agents (e.g., how much previous week they
