@@ -74,6 +74,7 @@ public class AgentRan implements Agent {
 	 * Makes the agent update its attendance level based on its attendance
 	 * prediction by its best evaluated strategy.
 	 */
+	@Override
 	public void updateAttendance() {
 		final double prediction = predictRandomAttendance();
 

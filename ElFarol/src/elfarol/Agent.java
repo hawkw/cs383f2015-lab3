@@ -18,4 +18,9 @@ public interface Agent {
 	 */
 	public abstract void updateBestStrategy();
 
+	/**
+	 * Makes the agent update its attendance level based on its attendance
+	 * prediction by its best evaluated strategy.
+	 */
+	public abstract void updateAttendance();
 }
