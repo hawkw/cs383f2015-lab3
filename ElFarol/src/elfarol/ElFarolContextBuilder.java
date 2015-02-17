@@ -19,9 +19,7 @@ import repast.simphony.parameter.Parameters;
  * The context builder for the <i>El Farol</i> simulation.
  * 
  * @author Richard O. Legendi (richard.legendi)
- * @since 2.0-beta, 2011
- * @version $Id: ElFarolContextBuilder.java 514 2011-07-08 14:50:51Z
- *          richard.legendi@gmail.com $
+ * @author Hawk Weisman <hawk@meteorcodelabs.com>
  */
 public class ElFarolContextBuilder extends DefaultContext<Object> implements
 		ContextBuilder<Agent> {
@@ -45,29 +43,23 @@ public class ElFarolContextBuilder extends DefaultContext<Object> implements
 		ParameterWrapper.reinit();
 		History.getInstance().init();
 
-		for (int i = 0; i < agentAmount(ParameterWrapper.getPercentRand(),
-				ParameterWrapper.getAgentsNumber()); i++) {
+		for (int i = 0; i < agentAmount(getPercentRand(), getAgentsNumber()); i++) {
 			final Agent agent = new AgentRan();
 			context.add(agent);
 		}
-		for (int i = 0; i < agentAmount(ParameterWrapper.getPercentAvg(),
-				ParameterWrapper.getAgentsNumber()); i++) {
+		for (int i = 0; i < agentAmount(getPercentAvg(), getAgentsNumber()); i++) {
 			final Agent agent = new AgentAverage();
 			context.add(agent);
 		}
 		/*
-		 * // TODO: comment this back in when the smart agent is implemented
-		for (int i = 0; i < agentAmount( ParameterWrapper.getPercentAvg(),
-				ParameterWrapper.getAgentsNumber() ); i++) { 
-			final Agent agent = new AgentSmart(); context.add(agent); 
-		}
+		 * // TODO: comment this back in when the smart agent is implemented for
+		 * (int i = 0; i < agentAmount( ParameterWrapper.getPercentAvg(),
+		 * ParameterWrapper.getAgentsNumber() ); i++) { final Agent agent = new
+		 * AgentSmart(); context.add(agent); }
 		 */
-		for (int i = 0; i < agentAmount(
-				100 - (ParameterWrapper.getPercentAvg()
-						+ ParameterWrapper.getPercentRand() + ParameterWrapper
-						.getPercentSmart()),
-				ParameterWrapper.getAgentsNumber()); i++) {
-			final Agent agent = new AgentAverage();
+		for (int i = 0; i < agentAmount(100 - (getPercentAvg()
+				+ getPercentRand() + getPercentSmart()), getAgentsNumber()); i++) {
+			final Agent agent = new AgentWeighted();
 			context.add(agent);
 		}
 		return context;
