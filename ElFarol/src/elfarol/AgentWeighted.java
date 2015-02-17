@@ -158,11 +158,6 @@ public class AgentWeighted implements Agent {
 
 		return ret;
 	}
-	
-	private double predictRandomAttendance() {
-
-		return (Math.random() * 100);
-	}
 
 	// ========================================================================
 	// === Public Interface ===================================================
