@@ -10,6 +10,7 @@ package elfarol;
 import static elfarol.ParameterWrapper.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import elfarol.strategies.AStrategy;
@@ -31,6 +32,18 @@ import elfarol.strategies.RandomStrategy;
  * @see AStrategy
  */
 public class AgentRan implements Agent {
+	
+	/**
+	 * Returns a random int between min and max
+	 * @param min
+	 * @param max
+	 * @return a random int between min and max
+	 */
+	public static int randomInRange(int min, int max) {
+		assert (min < max);
+	    return min + (int)(Math.random() * (max - min + 1));
+	}
+	
 	/**
 	 * A boolean flag that shows if the agent is attending the bar in the
 	 * current time step.
@@ -54,8 +67,8 @@ public class AgentRan implements Agent {
 		return attend;
 	}
 
-	private double predictRandomAttendance() {
-		return (Math.random() * 100);
+	private double predictAttendance(final List<Integer> subhistory) {
+		return randomInRange(Collections.min(subhistory), Collections.max(subhistory));
 	}
 
 	// ========================================================================
@@ -76,7 +89,11 @@ public class AgentRan implements Agent {
 	 */
 	@Override
 	public void updateAttendance() {
-		final double prediction = predictRandomAttendance();
+		final double prediction = predictAttendance(
+				History
+				.getInstance()
+				.getMemoryBoundedSubHistory()
+				);
 
 		attend = (prediction <= getOvercrowdingThreshold());
 	}
