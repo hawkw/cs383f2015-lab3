@@ -31,22 +31,6 @@ import elfarol.strategies.RandomStrategy;
  * @see AStrategy
  */
 public class AgentRan implements Agent {
-
-	// ========================================================================
-	// === Members ============================================================
-
-	/** The list of strategy objects this agent may use for prediction. */
-	private final List<AStrategy> strategies = new ArrayList<AStrategy>();
-
-	/**
-	 * The best strategy used so far.
-	 * 
-	 * <p>
-	 * Initially it is set to the first one.
-	 * </p>
-	 */
-	private AStrategy bestStrategy = null;
-
 	/**
 	 * A boolean flag that shows if the agent is attending the bar in the
 	 * current time step.
@@ -57,13 +41,6 @@ public class AgentRan implements Agent {
 	 * Initializes a new agent instance with the
 	 */
 	public AgentRan() {
-		for (int i = 0, n = getStrategiesNumber(); i < n; ++i) {
-			strategies.add(new RandomStrategy());
-		}
-
-		bestStrategy = strategies.get(0); // Choose the first one initially
-		
-		updateBestStrategy();
 	}
 
 	/**
@@ -77,77 +54,6 @@ public class AgentRan implements Agent {
 		return attend;
 	}
 
-	// ========================================================================
-	// === Utility Functions ==================================================
-
-	/**
-	 * Evaluates the fitness value of the specified strategy based on the
-	 * current knowledge of the agent (i.e., based on the current state recorded
-	 * in the memory of the agent).
-	 * 
-	 * <p>
-	 * <i>The smaller value returned by this function the better the strategy
-	 * is.</i> The value is constructed by summing up the differences between
-	 * the actual and predicted value the past <code>memorySize</code> weeks
-	 * based on the current strategy. The predicted value is determined by the
-	 * {@link #predictAttendance(AStrategy, List)} function.
-	 * </p>
-	 * 
-	 * @param strategy
-	 *            the strategy to evaluate; <i>cannot be <code>null</code></i>
-	 * @return the difference between the predicted and actual attendance level
-	 *         of the last <code>memorySize</code> weeks; non-negative
-	 */
-	private double score(final AStrategy strategy) {
-		if (null == strategy) {
-			throw new IllegalArgumentException("strategy == null");
-		}
-
-		double ret = 0.0;
-		for (int i = 0; i < getMemorySize(); ++i) {
-			final int week = i + 1;
-			final double currentAttendance = History.getInstance()
-					.getAttendance(i);
-			final double prediction = predictRandomAttendance();
-
-			ret += Math.abs(currentAttendance - prediction);
-		}
-
-		assert (ret >= 0);
-		return ret;
-	}
-
-	/**
-	 * Returns the predicted attendance level of the bar with the specified
-	 * strategy for the given history time window.
-	 * 
-	 * <p>
-	 * It uses an autoregressive model with <code>c = 1</code>. Prediction is
-	 * determined by the function requires the current strategy and the list of
-	 * attendance values preceding the week<sup>th</sup> element of history.
-	 * Formally, the function should return the following value
-	 * <code>p(t)</code> prediction described in the original model:
-	 * </p>
-	 * 
-	 * <pre>
-	 * p(t) = w(t) + sum_{i=t-1}^{t-M}w(i)*a(i-1)
-	 * </pre>
-	 * 
-	 * <p>
-	 * where <code>t</code> is the current time, <code>w(i)</code> is the
-	 * weight, <code>a(i)</code> is the attendance level and <code>M</code> is
-	 * the memory size.
-	 * <p>
-	 * 
-	 * @param strategy
-	 *            the strategy to predict the attendance with
-	 * @param subhistory
-	 *            the time window of the history to create a prediction from
-	 * @return the prediction based on the previous attendance levels based on
-	 *         the described formulae
-	 */
-
-	
 	private double predictRandomAttendance() {
 		return (Math.random() * 100);
 	}
@@ -161,17 +67,7 @@ public class AgentRan implements Agent {
 	 * <code>memorySize * agentsNumber + 1</code> is also considered.
 	 */
 	public void updateBestStrategy() {
-		// Defined threshold level
-		double minScore = getMemorySize() * getAgentsNumber() + 1;
-
-		for (final AStrategy strategy : strategies) {
-			final double score = score(strategy);
-			if (score < minScore) {
-				minScore = score;
-				bestStrategy = strategy;
-			}
-		}
-		System.out.println("Best strategy "+bestStrategy);
+		// Do nothing (this agent type always chooses randomly)
 	}
 
 	/**
