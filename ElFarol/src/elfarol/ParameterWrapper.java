@@ -36,6 +36,11 @@ public final class ParameterWrapper {
 	/** Specifies the number of agents in the simulation. */
 	private static int agentsNumber = 100;
 
+	/** Specifies the number of agents in the simulation. */
+	private static int percentRand = 0;
+	private static int percentAvg = 0;
+	private static int percentSmart = 0;
+	
 	/** Specifies the memory size that agents have. */
 	private static int memorySize = 5;
 
@@ -102,6 +107,12 @@ public final class ParameterWrapper {
 
 		agentsNumber = ((Integer) parameters.getValue("agentsNumber"))
 				.intValue();
+		percentRand = ((Integer) parameters.getValue("percentRand"))
+				.intValue();
+		percentSmart = ((Integer) parameters.getValue("percentSmart"))
+				.intValue();
+		percentAvg = ((Integer) parameters.getValue("percentAvg"))
+				.intValue();
 
 		memorySize = ((Integer) parameters.getValue("memorySize")).intValue();
 
@@ -121,4 +132,5 @@ public final class ParameterWrapper {
 	private ParameterWrapper() {
 		;
 	}
+
 }

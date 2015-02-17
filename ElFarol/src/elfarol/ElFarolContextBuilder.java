@@ -11,7 +11,9 @@ import static elfarol.ParameterWrapper.*;
 import repast.simphony.context.Context;
 import repast.simphony.context.DefaultContext;
 import repast.simphony.dataLoader.ContextBuilder;
+import repast.simphony.engine.environment.RunEnvironment;
 import repast.simphony.engine.schedule.ScheduledMethod;
+import repast.simphony.parameter.Parameters;
 
 /**
  * The context builder for the <i>El Farol</i> simulation.
@@ -38,6 +40,8 @@ public class ElFarolContextBuilder extends DefaultContext<Object> implements
 	public Context<Agent> build(final Context<Agent> context) {
 		ParameterWrapper.reinit();
 		History.getInstance().init();
+		final Parameters parameters = RunEnvironment.getInstance()
+				.getParameters();
 
 		for (int i = 0; i < getAgentsNumber(); ++i) {
 			final Agent agent = new AgentRan();
