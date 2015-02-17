@@ -9,27 +9,20 @@ package elfarol;
 
 import static elfarol.ParameterWrapper.*;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import elfarol.strategies.AStrategy;
-import elfarol.strategies.RandomStrategy;
 
 /**
- * Defines an agent of the <i>El Farol</i> simulation.
+ * An Agent that predicts attendance by picking a random
+ * number between the highest and lowest attendance values
+ * that it remembers.
  * 
- * <p>
- * Agents have a list of strategies (see {@link AStrategy}) and each turn they
- * try to predict the attendance level of the bar for the current time step, and
- * determine if they attend to the bar or not.
- * </p>
+ * @see Agent
  * 
- * @author Richard O. Legendi (richard.legendi)
- * @since 2.0-beta, 2011
- * @version $Id: Agent.java 1092 2011-08-22 08:35:16Z richard.legendi@gmail.com
- *          $
- * @see AStrategy
+ * @author Hawk Weisman <hawk@meteorcodelabs.com>
+ * @author Luke Smith
  */
 public class AgentRan implements Agent {
 	
@@ -51,7 +44,7 @@ public class AgentRan implements Agent {
 	private boolean attend = false;
 
 	/**
-	 * Initializes a new agent instance with the
+	 * Initializes a new Random agent
 	 */
 	public AgentRan() {
 	}
@@ -67,8 +60,15 @@ public class AgentRan implements Agent {
 		return attend;
 	}
 
+	/**
+	 * Predicts attendance based on the agent's memory
+	 * by picking a random number between the highest
+	 * and lowest remembered attendance.
+	 * @param subhistory a List<Integer> containing the previous attendance values
+	 * @return a predicted attendance
+	 */
 	private double predictAttendance(final List<Integer> subhistory) {
-		return randomInRange(Collections.min(subhistory), Collections.max(subhistory));
+		return (double) randomInRange(Collections.min(subhistory), Collections.max(subhistory));
 	}
 
 	// ========================================================================
