@@ -81,13 +81,13 @@ public class ElFarolContextBuilder extends DefaultContext<Object> implements
 	 */
 	@ScheduledMethod(start = 1, interval = 1)
 	public void schedule() {
-		for (final AgentRan act : Utils.getAgentRanList()) {
+		for (final Agent act : Utils.getAgentList()) {
 			act.updateAttendance();
 		}
 
-		History.getInstance().updateHistoryRan();
+		History.getInstance().updateHistory();
 
-		for (final AgentRan act : Utils.getAgentRanList()) {
+		for (final Agent act : Utils.getAgentList()) {
 			act.updateBestStrategy();
 		}
 	}
@@ -102,7 +102,7 @@ public class ElFarolContextBuilder extends DefaultContext<Object> implements
 	 * @return the current attendance level of the bar
 	 */
 	public int attendance() {
-		return Utils.getAttendanceRan();
+		return Utils.getAttendance();
 	}
 
 }

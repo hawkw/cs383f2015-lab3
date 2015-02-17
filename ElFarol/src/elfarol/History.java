@@ -82,13 +82,6 @@ public class History {
 		history.removeLast();// Remove last element
 		history.addFirst(Utils.getAttendance()); // Add first element
 	}
-	
-	
-	
-	public void updateHistoryRan() {
-		history.removeLast();// Remove last element
-		history.addFirst(Utils.getAttendanceRan()); // Add first element
-	}
 
 	/**
 	 * Returns the attendance level recorded in the history for the specified
