@@ -12,8 +12,6 @@ import static elfarol.ParameterWrapper.*;
 import java.util.Collections;
 import java.util.List;
 
-import elfarol.strategies.AStrategy;
-
 /**
  * An Agent that predicts attendance by picking a random
  * number between the highest and lowest attendance values
