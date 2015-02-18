@@ -1,0 +1,10 @@
+
+*.class
+
+*.xml
+
+*.csv
+
+*.log
+
+ElFarol/velocity.log
