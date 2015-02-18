@@ -7,7 +7,8 @@ import java.util.Map;
 import java.util.HashMap;
 
 /**
- * Agent which predicts attendance by averaging it's current memory
+ * Agent that predicts bar attendance using a Markov Chain, mapping previous
+ * attendance to expected attendance
  * @author Willem Yarbrough <yarbroughw@allegheny.edu>
  * 		   Luke Smith <smithl4@allegheny.edu>
  *
