@@ -13,7 +13,7 @@ import java.util.HashMap;
  * 		   Luke Smith <smithl4@allegheny.edu>
  *
  */
-public class AgentSmart implements Agent {
+public class AgentMarkov implements Agent {
 	private boolean attend = false;
 	private Map<Integer,Double> chain = new HashMap<Integer,Double>();
 	
