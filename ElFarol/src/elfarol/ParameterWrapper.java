@@ -41,6 +41,8 @@ public final class ParameterWrapper {
 	private static int percentAvg = 0;
 	private static int percentSmart = 0;
 	
+	private static String agentType = "Weighted";
+	
 	/** Specifies the memory size that agents have. */
 	private static int memorySize = 5;
 
@@ -122,7 +124,7 @@ public final class ParameterWrapper {
 				.intValue();
 		percentAvg = ((Integer) parameters.getValue("percentAvg"))
 				.intValue();
-
+		agentType = ((String) parameters.getValue("agentType"));
 		memorySize = ((Integer) parameters.getValue("memorySize")).intValue();
 
 		strategiesNumber = ((Integer) parameters.getValue("strategiesNumber"))
@@ -140,6 +142,9 @@ public final class ParameterWrapper {
 	 */
 	private ParameterWrapper() {
 		;
+	}
+	public static String getAgentType() {
+		return agentType;
 	}
 
 }

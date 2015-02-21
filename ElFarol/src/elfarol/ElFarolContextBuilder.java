@@ -42,7 +42,7 @@ public class ElFarolContextBuilder extends DefaultContext<Object> implements
 	public Context<Agent> build(final Context<Agent> context) {
 		ParameterWrapper.reinit();
 		History.getInstance().init();
-
+		/*
 		for (int i = 0; i < agentAmount(getPercentRand(), getAgentsNumber()); i++) {
 			final Agent agent = new AgentRan();
 			context.add(agent);
@@ -52,7 +52,6 @@ public class ElFarolContextBuilder extends DefaultContext<Object> implements
 			context.add(agent);
 		}
 		
-		// TODO: comment this back in when the smart agent is implemented 
 		for (int i = 0; i < agentAmount( ParameterWrapper.getPercentAvg(),
 				ParameterWrapper.getAgentsNumber() ); i++) {
 			final Agent agent = new AgentMarkov(); 
@@ -62,6 +61,17 @@ public class ElFarolContextBuilder extends DefaultContext<Object> implements
 		for (int i = 0; i < agentAmount(100 - (getPercentAvg()
 				+ getPercentRand() + getPercentSmart()), getAgentsNumber()); i++) {
 			final Agent agent = new AgentWeighted();
+			context.add(agent);
+		}*/
+		for (int i = 0; i <= getAgentsNumber(); i++) {
+			Agent agent;
+			switch (getAgentType()) {
+				case "Random":		agent = new AgentRan(); break;
+				case "Markov":		agent = new AgentMarkov(); break;
+				case "Average":		agent = new AgentAverage(); break;
+				case "Weighted":	
+				default:			agent = new AgentWeighted(); break;
+			}
 			context.add(agent);
 		}
 		return context;
