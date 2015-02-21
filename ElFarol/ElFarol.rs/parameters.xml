@@ -30,6 +30,12 @@
 						converter="repast.simphony.parameter.StringConverterFactory$IntConverter"
 									
 		/>
+				<parameter name="agentType" displayName="Agent Type" type="java.lang.String" 
+						defaultValue="Weighted" 
+						isReadOnly="false" 
+						converter="repast.simphony.parameter.StringConverterFactory$StringStringConverter"
+									
+		/>
 				<parameter name="percentSmart" displayName="Percentage of Smart Agents" type="int" 
 						defaultValue="0" 
 						isReadOnly="false" 
