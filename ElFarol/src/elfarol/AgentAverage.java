@@ -18,11 +18,9 @@ public class AgentAverage implements Agent {
 	}
 	
 	private double predictAttendance(final List<Integer> subhistory) {
-		return subhistory
-				.stream()
-				.mapToInt(i -> i)
-				.average()
-				.orElse(0);
+		int sum = 0;
+		for (Integer i : subhistory) { sum += i; }
+		return sum/subhistory.size();
 	}
 
 	@Override
