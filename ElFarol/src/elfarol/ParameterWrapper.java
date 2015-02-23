@@ -51,6 +51,8 @@ public final class ParameterWrapper {
 
 	/** Specifies the threshold level. */
 	private static int overcrowdingThreshold = 60;
+	
+	private static int runTicks = -1;
 
 	// ========================================================================
 	// === Getter Methods =====================================================
@@ -71,6 +73,10 @@ public final class ParameterWrapper {
 	}
 	public static int getPercentSmart() {
 		return percentSmart;
+	}
+
+	public static int getRunTicks() {
+		return runTicks;
 	}
 
 	/**
@@ -132,6 +138,8 @@ public final class ParameterWrapper {
 
 		overcrowdingThreshold = ((Integer) parameters
 				.getValue("overcrowdingThreshold")).intValue();
+		runTicks = ((Integer) parameters
+				.getValue("runTicks")).intValue();
 	}
 
 	// ========================================================================

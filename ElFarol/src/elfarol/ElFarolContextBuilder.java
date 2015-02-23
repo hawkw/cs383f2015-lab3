@@ -52,7 +52,7 @@ public class ElFarolContextBuilder extends DefaultContext<Object> implements
 			context.add(agent);
 		}
 		
-		for (int i = 0; i < agentAmount( ParameterWrapper.getPercentSmart(),
+		for (int i = 0; i < agentAmount( ParameterWrapper.getPercentAvg(),
 				ParameterWrapper.getAgentsNumber() ); i++) {
 			final Agent agent = new AgentMarkov(); 
 			context.add(agent);
@@ -75,6 +75,9 @@ public class ElFarolContextBuilder extends DefaultContext<Object> implements
 				}
 				context.add(agent);
 			}
+		}
+		if (getRunTicks() > -1) {
+			RunEnvironment.getInstance().endAt(getRunTicks());
 		}
 		return context;
 	}
