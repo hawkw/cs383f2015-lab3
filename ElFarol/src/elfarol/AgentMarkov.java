@@ -10,7 +10,7 @@ import java.util.HashMap;
  * Agent that predicts bar attendance using a Markov Chain, mapping previous
  * attendance to expected attendance
  * @author Willem Yarbrough <yarbroughw@allegheny.edu>
- * 		   Luke Smith <smithl4@allegheny.edu>
+ * @author Luke Smith <smithl4@allegheny.edu>
  *
  */
 public class AgentMarkov implements Agent {
