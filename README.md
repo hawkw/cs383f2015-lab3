@@ -25,8 +25,8 @@ Analysis
 Analysis of the various strategies is contained in this [IPython notebook](http://nbviewer.ipython.org/github/hawkw/cs383f2015-lab3/blob/master/analysis.ipynb).
 
 
-Take Away
----------
+Learning Take-aways
+------------------
 
 We learned more about Markov chains while implementing it. A Markov chain is a predicitve model that uses the previous two elements to predict the next element.
 
