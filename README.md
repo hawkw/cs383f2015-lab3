@@ -23,3 +23,13 @@ Analysis
 --------
 
 Analysis of the various strategies is contained in this [IPython notebook](http://nbviewer.ipython.org/github/hawkw/cs383f2015-lab3/blob/master/analysis.ipynb).
+
+
+Take Away
+---------
+
+We learned more about Markov chains while implementing it. A Markov chain is a predicitve model that uses the previous two elements to predict the next element.
+
+We learned that the effects of numAgents has an impact of the trends shown. With more Agents inside the model, you can see patterns begin to appear within the attendance graphs (see graphs).
+
+We learned that some strategies are better at handling the threashold differences than others. The Regression model is able to even itself out at the threshhold higher than average, but when the threshold is lower it does not work.
