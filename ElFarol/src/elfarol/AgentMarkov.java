@@ -59,7 +59,7 @@ public class AgentMarkov implements Agent {
 	}
 	
 	@Override
-	public void updateBestStrategy() {
+	public void updatePredictions() {
 		List<Integer> subhistory = History
 									.getInstance()
 									.getMemoryBoundedSubHistory();

@@ -105,7 +105,7 @@ public class ElFarolContextBuilder extends DefaultContext<Object> implements
 		History.getInstance().updateHistory();
 
 		for (final Agent act : Utils.getAgentList()) {
-			act.updateBestStrategy();
+			act.updatePredictions();
 		}
 	}
 

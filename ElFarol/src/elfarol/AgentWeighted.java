@@ -63,7 +63,7 @@ public class AgentWeighted implements Agent {
 
 		bestStrategy = strategies.get(0); // Choose the first one initially
 		
-		updateBestStrategy();
+		updatePredictions();
 	}
 
 	/* (non-Javadoc)
@@ -166,7 +166,7 @@ public class AgentWeighted implements Agent {
 	 * @see elfarol.Agent#updateBestStrategy()
 	 */
 	@Override
-	public void updateBestStrategy() {
+	public void updatePredictions() {
 		// Defined threshold level
 		double minScore = getMemorySize() * getAgentsNumber() + 1;
 
