@@ -1,16 +1,16 @@
 Jobs
 ----
 
-- [ ] Stupid Strategy 1 (???)
+- [x] Stupid Strategy 1 (???)
     + Luke
-- [ ] Stupid Strategy 2 (???)
+- [x] Stupid Strategy 2 (???)
     + Luke
-- [ ] Smart Strategy (???)
+- [x] Smart Strategy (???)
     + Will
     + a little Hawk maybe
-- [ ] Modifications to `ContextBuilder`
+- [x] Modifications to `ContextBuilder`
     + Hawk
-- [ ] Figure out how to run Repast in batch mode
+- [x] Figure out how to run Repast in batch mode
     + Hawk
 - [ ] Plots in `matplotlib`
     + Hawk
