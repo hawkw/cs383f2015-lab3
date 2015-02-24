@@ -17,6 +17,12 @@ public class AgentMarkov implements Agent {
 	private boolean attend = false;
 	private Map<Integer,Double> chain = new HashMap<Integer,Double>();
 	
+	/**
+        * Predicts attendance by looking at the previous days attendance
+	*
+	* @param yesterdays attendance
+	* @return a prediction for the next attendance.
+	*/
 	private double getChainValue(int attendance) {
 		int bin = attendance / 10;
 		Double prediction = chain.get(bin);
@@ -26,12 +32,24 @@ public class AgentMarkov implements Agent {
 			return prediction;
 		}
 	}
+	
+	/**
+        * Updates the prediction for that bin
+	*
+	* @param Two days ago attendance
+	* @param last attendance
+	*/
 	private void updateProbs(int lastAttendance, int attendance){		
-		// update our prediction for that bin
 		double previousPrediction = getChainValue(lastAttendance);
 		chain.put(lastAttendance/10,(previousPrediction + attendance) / 2);
 	}
 		
+	/**
+        * Takes last element in history and calls {@link #getChainValue(int)} with that value.
+	*
+	* @param Subhistory
+	* @return {@link #getChainValue(int)}
+	*/
 	private double predictAttendance(final List<Integer> subhistory) {
 		int size = subhistory.size();
 		int yesterday;
@@ -48,6 +66,11 @@ public class AgentMarkov implements Agent {
 		return attend;
 	}
 
+
+	/**
+        * Updates Attendance 
+	*
+	*/
 	@Override
 	public void updateAttendance() {
 		final double prediction = predictAttendance(
@@ -58,6 +81,10 @@ public class AgentMarkov implements Agent {
 		attend = (prediction <= getOvercrowdingThreshold());
 	}
 	
+	/**
+        * Updates prediction of next attendance
+	*
+	*/
 	@Override
 	public void updatePredictions() {
 		List<Integer> subhistory = History
