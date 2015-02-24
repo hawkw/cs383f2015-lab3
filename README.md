@@ -26,7 +26,7 @@ Analysis of the various strategies is contained in this [IPython notebook](http:
 
 
 Take Away
-=========
+---------
 
 We learned more about Markov chains while implementing it. A Markov chain is a predicitve model that uses the previous two elements to predict the next element.
 
