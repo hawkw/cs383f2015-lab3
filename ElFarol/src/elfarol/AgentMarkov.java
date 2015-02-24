@@ -8,7 +8,11 @@ import java.util.HashMap;
 
 /**
  * Agent that predicts bar attendance using a Markov Chain, mapping previous
- * attendance to expected attendance
+ * attendance to expected attendance. This process is entirely deterministic,
+ * but allows the agents to have a nuanced process of prediction based on
+ * previous experience. Results using this Agent will likely converge to a
+ * stable state, as all agents eventually record the same experiences into
+ * their Markov chain, and thus make identical inferences.  
  * @author Willem Yarbrough <yarbroughw@allegheny.edu>
  * @author Luke Smith <smithl4@allegheny.edu>
  *
@@ -68,7 +72,9 @@ public class AgentMarkov implements Agent {
 
 
 	/**
-        * Updates Attendance 
+		* Updates using previous day's attendance as input to the markov chain,
+		* and sees if predicted attendance is higher or lower than the
+		* overcrowding threshold.
 	*
 	*/
 	@Override
@@ -82,7 +88,7 @@ public class AgentMarkov implements Agent {
 	}
 	
 	/**
-        * Updates prediction of next attendance
+        * Updates predictions in markov chain using last two attendance rates.
 	*
 	*/
 	@Override
