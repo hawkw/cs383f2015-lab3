@@ -9,11 +9,11 @@ Implementation
 --------------
 
 We have added three additional agent types:
- - `AgentRan`, which makes a random prediction between the maximum and minimum attendance levels.
- - `AgentAverage`, which makes a prediction based on the average of all the remembered attendence levels.
- - `AgentMarkov`, which uses a Markov chain predictive model to predict the next attendance.
+ - [`AgentRan`](http://hawkweisman.me/cs383f2015-lab3/elfarol/AgentRan.html), which makes a random prediction between the maximum and minimum attendance levels.
+ - [`AgentAverage`](http://hawkweisman.me/cs383f2015-lab3/elfarol/AgentAverage.html), which makes a prediction based on the average of all the remembered attendence levels.
+ - [`AgentMarkov`](http://hawkweisman.me/cs383f2015-lab3/elfarol/AgentMarkov.html), which uses a Markov chain predictive model to predict the next attendance.
 
-These new agent types were implemented by extracting an interface `Agent` from the public methods in the provided `Agent` class (renamed to `AgentWeighted`). New agent classes were written to extend this interface, and the `ElFarolContextBuilder` class was modified to create agents of the correct type depending on the parameters passed to the model. Additional parameters were added to the Repast model for controlling the distribution of agents, the maximum run time, and other characteristics.
+These new agent types were implemented by extracting an interface [`Agent`](http://hawkweisman.me/cs383f2015-lab3/elfarol/Agent.html) from the public methods in the provided `Agent` class (renamed to [`AgentWeighted`](http://hawkweisman.me/cs383f2015-lab3/elfarol/AgentWeighted.html)). New agent classes were written to extend this interface, and the [`ElFarolContextBuilder`](http://hawkweisman.me/cs383f2015-lab3/elfarol/ElFarolContextBuilder.html) class was modified to create agents of the correct type depending on the parameters passed to the model. Additional parameters were added to the Repast model for controlling the distribution of agents, the maximum run time, and other characteristics.
 
 For documentation on the functionality of each agent type, please check out the [JavaDoc](http://hawkweisman.me/cs383f2015-lab3/) for their respective Java classes.
 
